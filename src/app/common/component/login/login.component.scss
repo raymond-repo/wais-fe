@@ -1,0 +1,49 @@
+.login-box {
+  width: 320px;
+  height: 320px;
+  background: #001529;
+  color: #1890ff;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+  background-color: #ffffff;
+}
+
+.login-form {
+  margin: auto;
+  max-width: 300px;
+  position: absolute;
+  top: 25%; left: 0; bottom: 0; right: 0;
+}
+
+.login-form-margin {
+  margin-bottom: 16px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+span {
+  color: #1890ff;
+}
+
+p {
+  text-align: center;
+  color: #ffffff;
+}
