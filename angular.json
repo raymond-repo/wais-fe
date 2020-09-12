@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "baseline-wais-fe"
+  "defaultProject": "baseline-wais-fe",
+  "cli": {
+    "analytics": false
+  }
 }
