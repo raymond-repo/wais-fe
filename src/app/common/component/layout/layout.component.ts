@@ -19,7 +19,29 @@ export class LayoutComponent implements OnInit {
     path: 'dashboard',
     subMenu: []
   }, {
-    name: 'Form',
+    name: 'Member',
+    icon: 'user',
+    path: '',
+    subMenu: [{
+      name: 'Record / Transmital',
+      path: 'user',
+      subMenu: []
+    }]
+  }, {
+    name: 'Agent',
+    icon: 'user',
+    path: '',
+    subMenu: [{
+      name: 'Agent`s Member List',
+      path: 'test2',
+      subMenu: []
+    }, {
+      name: 'Agent`s Monthly Sales Report',
+      path: 'test2',
+      subMenu: []
+    }]
+  }, {
+    name: 'Staff',
     icon: 'form',
     path: '',
     subMenu: [{
