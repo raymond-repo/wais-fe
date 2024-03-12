@@ -22,14 +22,14 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.getUser();
-    this.userQuery.select()
-      .pipe(
-        filter(res => res.user.length !== 0)
-      )
-      .subscribe(res => {
-        this.user = res.user;
-      });
+    // this.userService.getUser();
+    // this.userQuery.select()
+    //   .pipe(
+    //     filter(res => res.user.length !== 0)
+    //   )
+    //   .subscribe(res => {
+    //     this.user = res.user;
+    //   });
   }
 
   public add() {

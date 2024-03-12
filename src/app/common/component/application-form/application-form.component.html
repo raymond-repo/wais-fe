@@ -1,0 +1,123 @@
+
+<nz-divider nzText="Application Form"></nz-divider>
+
+<div nz-row>
+  <div nz-col nzSpan="8"></div>
+  <div nz-col nzSpan="8">
+    <form nz-form [formGroup]="formGroup" (ngSubmit)="submitForm()">
+  
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">First Name</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please input your Last Name">
+          <input type="text" nz-input formControlName="firstName" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">Middle Name</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please input your Middle Name">
+          <input type="text" nz-input formControlName="middleName" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">Last Name</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please input your Last Name">
+          <input type="text" nz-input formControlName="lastName" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">Date of Birth</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please input your Date of Birth">
+          <nz-date-picker formControlName="dateOfBirth"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">Age</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please input your Age">
+          <nz-input-number formControlName="age" [nzMin]="1" [nzMax]="1000" [nzStep]="1"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">Sex</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please input your Gender">
+          <nz-select formControlName="sex" >
+            <nz-option *ngFor="let data of listOfGender" [nzLabel]="data.label" [nzValue]="data.value"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">Place Of Birth</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please input your Place Of Birth">
+          <input type="text" nz-input formControlName="placeOfBirth" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">Occupation</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please input your Occupation">
+          <input type="text" nz-input formControlName="occupation" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">Permanent Address</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please input your Permanent Address">
+          <input type="text" nz-input formControlName="permanentAddress" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">Contact Number</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please input your Contact Number">
+          <input type="number" nz-input formControlName="contactNumber" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">Type Of Casket</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please select your Type Of Casket">
+          <nz-select formControlName="typeOfCasket" >
+            <nz-option *ngFor="let data of listOfCasket" [nzLabel]="data.label" [nzValue]="data.value"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">Membership Fee</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please input your Membership Fee">
+          <input type="text" nz-input formControlName="membershipFee" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">OR Number</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please input your OR Number">
+          <input type="text" nz-input formControlName="orNumber" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">Agent</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please select your Agent">
+          <nz-select formControlName="agent" >
+            <nz-option *ngFor="let data of listOfAgent" [nzLabel]="data.label" [nzValue]="data.value"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">FFSMP Branch</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please select your FFSMP Branch">
+          <nz-select formControlName="branch" >
+            <nz-option *ngFor="let data of listOfBranches" [nzLabel]="data.label" [nzValue]="data.value"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzRequired nzFor="name">Date Signed</nz-form-label>
+        <nz-form-control [nzSpan]="18" nzErrorTip="Please input your Date Signed">
+          <nz-date-picker formControlName="dateSigned"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="26" [nzOffset]="22">
+          <button nz-button nzType="primary">Register</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+    
+    
+  </div>
+  <div nz-col nzSpan="8"></div>
+</div>

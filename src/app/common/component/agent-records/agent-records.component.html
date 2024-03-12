@@ -1,0 +1,120 @@
+
+<div nz-row>
+  <div nz-col nzSpan="24">
+    <div class="buttons">
+      <button nz-button style="margin-right: 5px;" (click)="exportToPdf()" nzType="danger">
+        <span nz-icon nzType="file-pdf" nzTheme="outline"></span>
+        Export to PDF
+      </button>
+      <button nz-button (click)="encodeMonthlySales()" nzType="primary">
+        <span nz-icon nzType="file-add" nzTheme="outline"></span>
+        Encode Monthly Sales
+      </button>
+    </div>
+    
+  </div>
+</div>
+
+<div nz-row>
+  <div nz-col nzSpan="24">
+    <nz-table #nzTable [nzData]="listOfReceipt" [nzScroll]="{ y: '380px', x: '1100px'  }">
+      <thead>
+        <tr>
+          <th nzWidth="150px" nzLeft="0px">Specified Branch
+            <i nz-th-extra class="ant-table-filter-icon" nz-icon nz-dropdown #dropdown="nzDropdown" nzType="search"
+            [nzDropdownMenu]="specifiedBranch" [class.ant-table-filter-open]="dropdown.nzVisible" nzTrigger="click"
+            nzPlacement="bottomRight" [nzClickHide]="false" nzTableFilter></i>
+          </th>
+          <th nzWidth="150px" nzLeft="150px">Specified Agent</th>
+          <th nzWidth="200px" nzLeft="150px">Sequence Number</th>
+          <th nzWidth="250px">Members Name</th>
+          <th nzWidth="150px">Receipt Number
+            <i nz-th-extra class="ant-table-filter-icon" nz-icon nz-dropdown #dropdown="nzDropdown" nzType="search"
+              [nzDropdownMenu]="receiptNumber" [class.ant-table-filter-open]="dropdown.nzVisible" nzTrigger="click"
+              nzPlacement="bottomRight" [nzClickHide]="false" nzTableFilter></i>
+          </th>
+          <th nzWidth="150px">Gross 40%</th>
+          <th nzWidth="150px">Gross 25%</th>
+          <th nzWidth="150px">Gross 20%</th>
+          <th nzWidth="150px">Gross 15%</th>
+          <th nzWidth="150px">Commission</th>
+          <th nzWidth="200px" nzRight="0px">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of nzTable.data">
+          <td nzLeft="0px">{{data.specifiedBranch}}</td>
+          <td nzLeft="150px">{{data.specifiedAgent}}</td>
+          <td nzLeft="200px">{{data.sequenceNumber}}</td>
+          <td nzLeft="250px">{{data.membersName}}</td>
+          <td nzLeft="150px">{{data.receiptNumber}}</td>
+          <td nzLeft="150px">{{data.gross40}}</td>
+          <td nzLeft="150px">{{data.gross25}}</td>
+          <td nzLeft="150px">{{data.gross20}}</td>
+          <td nzLeft="150px">{{data.gross15}}</td>
+          <td nzLeft="150px">{{data.commission}}</td>
+          <td nzRight="0px">
+            <a (click)="viewDetails(data)">View</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a>Edit</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a>Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+
+
+<nz-dropdown-menu #specifiedBranch="nzDropdownMenu">
+  <div class="ant-table-filter-dropdown">
+    <div class="search-box">
+      <input type="text" nz-input placeholder="Search Name of Specified Branch" [(ngModel)]="searchValue" />
+      <button nz-button nzSize="small" nzType="primary" (click)="search('specifiedBranch')"
+        class="search-button">Search</button>
+      <button nz-button nzSize="small" (click)="reset('specifiedBranch')">Reset</button>
+    </div>
+  </div>
+</nz-dropdown-menu>
+
+<nz-dropdown-menu #receiptNumber="nzDropdownMenu">
+  <div class="ant-table-filter-dropdown">
+    <div class="search-box">
+      <input type="text" nz-input placeholder="Search Name of Receipt Number" [(ngModel)]="searchValue" />
+      <button nz-button nzSize="small" nzType="primary" (click)="search('receiptNumber')"
+        class="search-button">Search</button>
+      <button nz-button nzSize="small" (click)="reset('receiptNumber')">Reset</button>
+    </div>
+  </div>
+</nz-dropdown-menu>
+
+<!-- <nz-modal [(nzVisible)]="showModal" nzTitle="Encode Casualty" (nzOnCancel)="modalCancel()">
+  <form nz-form [formGroup]="formGroup">
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="specifiedBranch">Specified Branch</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Specified Branch!">
+        <input nz-input id="specifiedBranch" formControlName="specifiedBranch" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="date">Date</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Date!">
+        <input nz-input id="date" formControlName="date" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="nameOfDeceased">Name of Deceased</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Receipt Name of Deceased!">
+        <input nz-input id="nameOfDeceased" formControlName="nameOfDeceased"/>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <div *nzModalFooter>
+    <button nz-button nzType="default" (click)="modalCancel()">Close</button>
+    <button nz-button nzType="primary" (click)="submitForm()" [nzLoading]="isConfirmLoading">Submit</button>
+  </div>
+</nz-modal> -->

@@ -18,7 +18,7 @@ export class LoginService {
     private loginStore: LoginStore) { }
 
   public login(loginRequest: LoginRequest): void {
-    // StorageUtil.REMOVE('auth');
+    StorageUtil.REMOVE('auth');
     this.http.post(UriConstants.LOGIN, loginRequest)
       .pipe(catchError((err) => {
         this.loginStore.setError(err);

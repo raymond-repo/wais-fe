@@ -13,55 +13,86 @@ export class LayoutComponent implements OnInit {
 
   public isCollapsed: boolean;
 
-  public sideMenu = [{
-    name: 'Dashboard',
-    icon: 'dashboard',
-    path: 'dashboard',
-    subMenu: []
-  }, {
-    name: 'Member',
-    icon: 'user',
-    path: '',
-    subMenu: [{
-      name: 'Record / Transmital',
-      path: 'user',
-      subMenu: []
-    }]
-  }, {
-    name: 'Agent',
-    icon: 'user',
-    path: '',
-    subMenu: [{
-      name: 'Agent`s Member List',
-      path: 'test2',
+  public currentYear: any;
+
+  public sideMenu = [
+    {
+      name: 'Dashboard',
+      icon: 'dashboard',
+      path: 'dashboard',
       subMenu: []
     }, {
-      name: 'Agent`s Monthly Sales Report',
-      path: 'test2',
-      subMenu: []
-    }]
-  }, {
-    name: 'Staff',
-    icon: 'form',
-    path: '',
-    subMenu: [{
-      name: 'Accounts',
+      name: 'E-Board',
+      icon: 'bar-chart',
       path: '',
       subMenu: [
         {
-          name: 'User',
-          path: 'user',
+          name: 'Application Form',
+          path: 'application-form',
+          subMenu: []
+        },
+        {
+          name: 'Monthly Casualty Records',
+          path: 'monthly-casualty-records',
+          subMenu: []
+        }, {
+          name: 'Insured Members',
+          path: 'insured-members',
+          subMenu: []
+        }, {
+          name: 'Receipt Records',
+          path: 'receipt-records',
+          subMenu: []
+        }]
+    }, {
+      name: 'Member',
+      icon: 'audit',
+      path: '',
+      subMenu: [
+        {
+          name: 'Record / Transmital',
+          path: 'transmittal',
+          subMenu: []
         }
       ]
     }, {
-      name: 'Sub Menu 1',
-      path: 'test2',
-      subMenu: []
-    }]
-  }];
+      name: 'Agent',
+      icon: 'usergroup-add',
+      path: '',
+      subMenu: [{
+        name: 'Member List',
+        path: 'agent-members',
+        subMenu: []
+      }, {
+        name: 'Monthly Sales Report',
+        path: 'agent-records',
+        subMenu: []
+      }]
+    }, {
+      name: 'Staff',
+      icon: 'user',
+      path: '',
+      subMenu: [
+        //   {
+        //   name: 'Accounts',
+        //   path: '',
+        //   subMenu: [
+        //     {
+        //       name: 'User',
+        //       path: 'user',
+        //     }
+        //   ]
+        // }, 
+        {
+          name: 'Employee Details',
+          path: 'employee-details',
+          subMenu: []
+        }]
+    }];
 
   ngOnInit() {
     this.initVariables();
+    this.currentYear = new Date().getFullYear();
   }
 
   private initVariables(): void {

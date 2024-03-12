@@ -70,13 +70,23 @@ nz-header {
 }
 
 nz-content {
-  margin: 24px;
+  margin: 0 16px;
 }
 
 .inner-content {
   padding: 24px;
   background: #fff;
   height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+nz-breadcrumb {
+  margin: 16px 0;
+}
+
+nz-footer {
+  text-align: center;
 }
 
 .user {

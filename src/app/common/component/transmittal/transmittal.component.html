@@ -1,0 +1,192 @@
+<!-- <button nz-button (click)="addMember()" nzType="primary">Add Member</button> -->
+
+<div nz-row>
+  <div nz-col nzSpan="24">
+    <div class="buttons">
+      <button nz-button style="margin-right: 5px;" (click)="exportToPdf()" nzType="danger">
+        <span nz-icon nzType="file-pdf" nzTheme="outline"></span>
+        Export to PDF
+      </button>
+      <button nz-button (click)="addMember()" nzType="primary">
+        <span nz-icon nzType="file-add" nzTheme="outline"></span>
+        Add Member
+      </button>
+    </div>
+
+  </div>
+</div>
+<div nz-row>
+  <div nz-col nzSpan="24">
+
+    <nz-table #nzTable [nzData]="listOfDisplayData" [nzScroll]="{ y: '380px', x: '1100px'  }">
+      <thead>
+        <tr>
+          <th nzWidth="150px" nzLeft="0px">Control Number
+            <i nz-th-extra class="ant-table-filter-icon" nz-icon nz-dropdown #dropdown="nzDropdown" nzType="search"
+              [nzDropdownMenu]="controlnumber" [class.ant-table-filter-open]="dropdown.nzVisible" nzTrigger="click"
+              nzPlacement="bottomRight" [nzClickHide]="false" nzTableFilter></i>
+          </th>
+          <th nzWidth="150px" nzLeft="150px">Specified Agent
+            <i nz-th-extra class="ant-table-filter-icon" nz-icon nz-dropdown #dropdown="nzDropdown" nzType="search"
+              [nzDropdownMenu]="agent" [class.ant-table-filter-open]="dropdown.nzVisible" nzTrigger="click"
+              nzPlacement="bottomRight" [nzClickHide]="false" nzTableFilter></i>
+          </th>
+          <th nzWidth="150px" nzLeft="150px">Receipt Number
+            <i nz-th-extra class="ant-table-filter-icon" nz-icon nz-dropdown #dropdown="nzDropdown" nzType="search"
+              [nzDropdownMenu]="receiptNumber" [class.ant-table-filter-open]="dropdown.nzVisible" nzTrigger="click"
+              nzPlacement="bottomRight" [nzClickHide]="false" nzTableFilter></i>
+          </th>
+          <th nzWidth="200px">Address</th>
+          <th nzWidth="150px">Type of Plan</th>
+          <th nzWidth="150px">Plan Amount</th>
+          <th nzWidth="150px">Date of Payment</th>
+          <th nzWidth="150px">Monthly Contribution</th>
+          <th nzWidth="150px">Running Balance</th>
+          <th nzWidth="200px" nzRight="0px">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of nzTable.data">
+          <td nzLeft="0px">{{data.controlNumber}}</td>
+          <td nzLeft="150px">{{data.agent}}</td>
+          <td nzLeft="150px">{{data.receiptNumber}}</td>
+          <td>{{data.address}}</td>
+          <td>{{data.typeOfPlan}}</td>
+          <td>{{data.planAmount}}</td>
+          <td>{{data.dateOfPayment}}</td>
+          <td>{{data.monthlyContribution}}</td>
+          <td>{{data.runningBalance}}</td>
+          <td nzRight="0px">
+            <a (click)="viewDetails(data)">View</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a>Edit</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a>Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+
+
+
+<!-- Search controlnumber modal -->
+<nz-dropdown-menu #controlnumber="nzDropdownMenu">
+  <div class="ant-table-filter-dropdown">
+    <div class="search-box">
+      <input type="text" nz-input placeholder="Search control number" [(ngModel)]="searchValue" />
+      <button nz-button nzSize="small" nzType="primary" (click)="search('controlnumber')"
+        class="search-button">Search</button>
+      <button nz-button nzSize="small" (click)="reset('controlnumber')">Reset</button>
+    </div>
+  </div>
+</nz-dropdown-menu>
+
+<!-- Search agent modal -->
+<nz-dropdown-menu #agent="nzDropdownMenu">
+  <div class="ant-table-filter-dropdown">
+    <div class="search-box">
+      <input type="text" nz-input placeholder="Search agent" [(ngModel)]="searchValue" />
+      <button nz-button nzSize="small" nzType="primary" (click)="search('agent')" class="search-button">Search</button>
+      <button nz-button nzSize="small" (click)="reset('agent')">Reset</button>
+    </div>
+  </div>
+</nz-dropdown-menu>
+
+<!-- Search receiptNumber modal -->
+<nz-dropdown-menu #receiptNumber="nzDropdownMenu">
+  <div class="ant-table-filter-dropdown">
+    <div class="search-box">
+      <input type="text" nz-input placeholder="Search Receipt Number" [(ngModel)]="searchValue" />
+      <button nz-button nzSize="small" nzType="primary" (click)="search('receiptNumber')"
+        class="search-button">Search</button>
+      <button nz-button nzSize="small" (click)="reset('receiptNumber')">Reset</button>
+    </div>
+  </div>
+</nz-dropdown-menu>
+
+<!-- Modal form -->
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Add Member Record / Transmital" (nzOnCancel)="modalCancel()">
+
+  <form nz-form [formGroup]="formGroup">
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="controlNumber">Control Number</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Control Number!">
+        <input nz-input id="controlNumber" formControlName="controlNumber" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="agent">Agent</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Agent!">
+        <input nz-input id="agent" formControlName="agent" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="receiptNumber">Receipt Number</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Receipt Number!">
+        <input nz-input id="receiptNumber" formControlName="receiptNumber" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="address">Address</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Address!">
+        <input nz-input id="address" formControlName="address" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="typeOfPlan">Type Of Plan</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Type Of Plan!">
+        <!-- <input nz-input id="typeOfPlan" formControlName="typeOfPlan" /> -->
+        <nz-select formControlName="typeOfPlan">
+          <nz-option [nzLabel]="'Option1'" [nzValue]="'Option1'"></nz-option>
+          <nz-option [nzLabel]="'Option2'" [nzValue]="'Option2'"></nz-option>
+        </nz-select>
+      </nz-form-control>
+
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="planAmount">Plan Amount</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Plan Amount!">
+        <!-- <input nz-input id="planAmount" formControlName="planAmount" /> -->
+        <nz-select formControlName="planAmount">
+          <nz-option [nzLabel]="'Option1'" [nzValue]="'Option1'"></nz-option>
+          <nz-option [nzLabel]="'Option2'" [nzValue]="'Option2'"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="dateOfPayment">Date Of Payment</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Control Number!">
+        <!-- <input nz-input id="dateOfPayment" formControlName="dateOfPayment" /> -->
+        <nz-date-picker formControlName="dateOfPayment"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="monthlyContribution">Monthly Contribution</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Monthly Contribution!">
+        <input nz-input id="monthlyContribution" formControlName="monthlyContribution" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="runningBalance">Running Balance</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Running Balance!">
+        <input nz-input id="runningBalance" formControlName="runningBalance" />
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <div *nzModalFooter>
+    <button nz-button nzType="default" (click)="modalCancel()">Close</button>
+    <button nz-button nzType="primary" (click)="formSubmit()" [nzLoading]="isConfirmLoading">Submit</button>
+  </div>
+
+</nz-modal>

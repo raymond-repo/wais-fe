@@ -5,7 +5,7 @@
 
     <div class="sidebar-logo">
       <a routerLink="/dashboard">
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <img src="assets/images/icon.png" alt="logo">
         <h1>FATIMA FMS</h1>
       </a>
     </div>
@@ -68,10 +68,14 @@
     </nz-header>
 
     <nz-content>
+      <nz-breadcrumb>
+        <nz-breadcrumb-item></nz-breadcrumb-item>
+      </nz-breadcrumb>
       <div class="inner-content">
         <router-outlet></router-outlet>
       </div>
     </nz-content>
 
+    <nz-footer>FATIMA FILE MANAGEMENT SYSTEM ©{{currentYear}} | Powered by DevWorks Solutions</nz-footer>
   </nz-layout>
 </nz-layout>

@@ -29,7 +29,15 @@ import {
   LogoutOutline
 } from '@ant-design/icons-angular/icons';
 import { WaisPageAuthGuard } from './common/config/wais-page-auth.guard';
-import { UserComponent } from './common/component/user/user.component';
+import { TransmittalComponent } from './common/component/transmittal/transmittal.component';
+import { AgentMemberComponent } from './common/component/agent-member/agent-member.component';
+import { AgentRecordsComponent } from './common/component/agent-records/agent-records.component';
+import { EmployeeDetailsComponent } from './common/component/employee-details/employee-details.component';
+import { ApplicationFormComponent } from './common/component/application-form/application-form.component';
+import { ReceiptEncodingComponent } from './common/component/receipt-encoding/receipt-encoding.component';
+import { MonthlyCasualtyRecordComponent } from './common/component/monthly-casualty-record/monthly-casualty-record.component';
+import { InsuredMembersComponent } from './common/component/insured-members/insured-members.component';
+import { ReceiptRecordsComponent } from './common/component/receipt-records/receipt-records.component';
 
 registerLocaleData(en);
 
@@ -39,7 +47,15 @@ registerLocaleData(en);
     LoginComponent,
     LayoutComponent,
     HomeComponent,
-    UserComponent
+    TransmittalComponent,
+    AgentMemberComponent,
+    AgentRecordsComponent,
+    EmployeeDetailsComponent,
+    ApplicationFormComponent,
+    ReceiptEncodingComponent,
+    MonthlyCasualtyRecordComponent,
+    InsuredMembersComponent,
+    ReceiptRecordsComponent
   ],
   imports: [
     BrowserModule,
